@@ -18,7 +18,6 @@ from __future__ import division
 from __future__ import print_function
 import gzip
 import os
-import numpy
 from six.moves import urllib
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import numpy
@@ -148,6 +147,33 @@ class DataSet(object):
             assert batch_size <= self._num_examples
         end = self._index_in_epoch
         return self._images[start:end], self._labels[start:end]
+
+def get_images_vector(filename ='k_minist/data/train.csv'):
+    """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
+    train_images, train_labels, test_images, test_labels = [], [], [], []
+    with open(filename) as f:
+        train_file = f.readlines()
+    i = 0
+    interval = (train_file.__len__() - 1)/5
+    for each_line in train_file:
+        if each_line[0] == 'l':
+            continue
+        each_line = each_line.strip('\n')
+        eachs = each_line.split(',')
+        label = numpy.zeros(10)
+        label[int(eachs[0])] = 1
+        if i < interval:
+            test_images.append(eachs[1:])
+            test_labels.append(label)
+        else:
+            train_images.append(eachs[1:])
+            train_labels.append(label)
+        i += 1
+    train_images = numpy.array(train_images)
+    train_labels = numpy.array(train_labels)
+    test_images = numpy.array(test_images)
+    test_labels = numpy.array(test_labels)
+    return train_images, train_labels,  test_images, test_labels
 
 
 def read_data_sets(train_dir, k_testfile = "k_minist/data/test.csv", fake_data=False, one_hot=False):
