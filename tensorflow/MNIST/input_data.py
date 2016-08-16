@@ -56,8 +56,9 @@ def extract_images(filename):
         cols = _read32(bytestream)
         buf = bytestream.read(rows * cols * num_images)
         data = numpy.frombuffer(buf, dtype=numpy.uint8)
-        data = data.reshape(num_images, rows, cols, 1)
-        return data
+        images = data.reshape(num_images, rows, cols, 1)
+        images = images.reshape(images.shape[0], images.shape[1] * images.shape[2])
+        return images
 
 
 def dense_to_one_hot(labels_dense, num_classes=10):
@@ -98,8 +99,8 @@ class DataSet(object):
             # Convert shape from [num examples, rows, columns, depth]
             # to [num examples, rows*columns] (assuming depth == 1)
             #if len(images.shape) == 3:
-            assert images.shape[3] == 1
-            images = images.reshape(images.shape[0],images.shape[1] * images.shape[2])
+            # assert images.shape[3] == 1
+            # images = images.reshape(images.shape[0], images.shape[1] * images.shape[2])
             # Convert from [0, 255] -> [0.0, 1.0].
             images = images.astype(numpy.float32)
             images = numpy.multiply(images, 1.0 / 255.0)
@@ -204,6 +205,20 @@ def read_data_sets(train_dir, k_testfile = "k_minist/data/test.csv", fake_data=F
     validation_labels = train_labels[:VALIDATION_SIZE]
     train_images = train_images[VALIDATION_SIZE:]
     train_labels = train_labels[VALIDATION_SIZE:]
+
+    train_images1, train_labels1, test_images1, test_labels1 = get_images_vector()
+    validation_images1 = train_images1[:VALIDATION_SIZE]
+    validation_labels1 = train_labels1[:VALIDATION_SIZE]
+    train_images1 = train_images1[VALIDATION_SIZE:]
+    train_labels1 = train_labels1[VALIDATION_SIZE:]
+
+    train_images = numpy.concatenate((train_images, train_images1))
+    train_labels = numpy.concatenate((train_labels, train_labels1))
+    test_images = numpy.concatenate((test_images, test_images1))
+    test_labels = numpy.concatenate((test_labels, test_labels1))
+    validation_images = numpy.concatenate((validation_images, validation_images1))
+    validation_labels = numpy.concatenate((validation_labels, validation_labels1))
+
     data_sets.train = DataSet(train_images, train_labels)
     data_sets.validation = DataSet(validation_images, validation_labels)
     data_sets.test = DataSet(test_images, test_labels)
@@ -232,4 +247,4 @@ def get_kaggle_test(file_path, fake_data=False):
     return test_data, test_labels
 
 
-mnist = read_data_sets("MNIST_data/", one_hot=True)
+# mnist = read_data_sets("MNIST_data/", one_hot=True)
