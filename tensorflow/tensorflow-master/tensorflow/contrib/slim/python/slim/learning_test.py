@@ -524,7 +524,7 @@ class TrainTest(tf.test.TestCase):
       train_op = self.create_train_op()
 
       model_variables = tf.all_variables()
-      model_path = os.path.join(logdir1, 'model.ckpt-300')
+      model_path = os.path.join(logdir1, 'model3124.ckpt-300')
 
       init_op = tf.initialize_all_variables()
       op, init_feed_dict = slim.assign_from_checkpoint(
@@ -578,7 +578,7 @@ class TrainTest(tf.test.TestCase):
       train_op = self.create_train_op()
 
       model_variables = tf.all_variables()
-      model_path = os.path.join(logdir1, 'model.ckpt-300')
+      model_path = os.path.join(logdir1, 'model3124.ckpt-300')
       saver = tf.train.Saver(model_variables)
       def RestoreFn(sess):
         saver.restore(sess, model_path)

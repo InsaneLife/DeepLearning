@@ -216,7 +216,7 @@ class Supervisor(object):
                summary_op=USE_DEFAULT, saver=USE_DEFAULT,
                global_step=USE_DEFAULT, save_summaries_secs=120,
                save_model_secs=600, recovery_wait_secs=30, stop_grace_secs=120,
-               checkpoint_basename="model.ckpt", session_manager=None,
+               checkpoint_basename="model3124.ckpt", session_manager=None,
                summary_writer=USE_DEFAULT, init_fn=None):
     """Create a `Supervisor`.
 

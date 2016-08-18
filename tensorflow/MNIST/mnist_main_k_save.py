@@ -73,9 +73,10 @@ saver = tf.train.Saver()
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
 with tf.Session() as sess:
-    sess.run(init_op)
+    # sess.run(init_op)
+    saver.restore(sess, "k_minist/model/model3124.ckpt")
     time1 = time.time()
-    for i in range(500):
+    for i in range(31240):
         batch = mnist.train.next_batch(50)
         if i % 100 == 0:
             train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
@@ -91,12 +92,12 @@ with tf.Session() as sess:
         x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
 
     # Save the variables to disk.
-    save_path = saver.save(sess, "k_minist/model/model.ckpt")
+    save_path = saver.save(sess, "k_minist/model/model62480.ckpt")
     print "Model saved in file: ", save_path
 
 with tf.Session() as sess:
     # Restore variables from disk.
-    saver.restore(sess, "k_minist/model/model.ckpt")
+    saver.restore(sess, "k_minist/model/model62480.ckpt")
     print "Model restored."
     print "test accuracy %g" % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
 

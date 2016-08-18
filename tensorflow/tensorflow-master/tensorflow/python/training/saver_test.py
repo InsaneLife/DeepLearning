@@ -893,18 +893,18 @@ class CheckpointStateTest(tf.test.TestCase):
     ckpt_path = os.path.join(save_dir, "checkpoint")
     ckpt_file = open(ckpt_path, "w")
     ckpt_file.write("""
-        model_checkpoint_path: "./model.ckpt-687529"
-        all_model_checkpoint_paths: "./model.ckpt-687500"
-        all_model_checkpoint_paths: "./model.ckpt-687529"
+        model_checkpoint_path: "./model3124.ckpt-687529"
+        all_model_checkpoint_paths: "./model3124.ckpt-687500"
+        all_model_checkpoint_paths: "./model3124.ckpt-687529"
         """)
     ckpt_file.close()
     ckpt = tf.train.get_checkpoint_state(save_dir)
     self.assertEqual(ckpt.model_checkpoint_path,
-                     os.path.join(save_dir, "./model.ckpt-687529"))
+                     os.path.join(save_dir, "./model3124.ckpt-687529"))
     self.assertEqual(ckpt.all_model_checkpoint_paths[0],
-                     os.path.join(save_dir, "./model.ckpt-687500"))
+                     os.path.join(save_dir, "./model3124.ckpt-687500"))
     self.assertEqual(ckpt.all_model_checkpoint_paths[1],
-                     os.path.join(save_dir, "./model.ckpt-687529"))
+                     os.path.join(save_dir, "./model3124.ckpt-687529"))
 
 class MetaGraphTest(tf.test.TestCase):
 

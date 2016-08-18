@@ -899,7 +899,7 @@ class Saver(object):
     """
     # If the checkpoint_filename is sharded, the checkpoint_filename could
     # be of format model.ckpt-step#-?????-of-shard#. For example,
-    # model.ckpt-123456-?????-of-00005, or model.ckpt-123456-00001-of-00002.
+    # model3124.ckpt-123456-?????-of-00005, or model3124.ckpt-123456-00001-of-00002.
     basename = re.sub(r"-[\d\?]+-of-\d+$", "", checkpoint_filename)
     meta_graph_filename = ".".join([basename, meta_graph_suffix])
     return meta_graph_filename

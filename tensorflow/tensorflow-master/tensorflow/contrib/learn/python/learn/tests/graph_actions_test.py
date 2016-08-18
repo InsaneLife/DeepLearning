@@ -113,7 +113,7 @@ class GraphActionsTest(tf.test.TestCase):
   def _assert_ckpt(self, output_dir, expected=True):
     ckpt_state = tf.train.get_checkpoint_state(output_dir)
     if expected:
-      pattern = '%s/model.ckpt-.*' % output_dir
+      pattern = '%s/model3124.ckpt-.*' % output_dir
       primary_ckpt_path = ckpt_state.model_checkpoint_path
       self.assertRegexpMatches(primary_ckpt_path, pattern)
       all_ckpt_paths = ckpt_state.all_model_checkpoint_paths
@@ -561,7 +561,7 @@ class GraphActionsTrainTest(tf.test.TestCase):
   def _assert_ckpt(self, output_dir, expected=True):
     ckpt_state = tf.train.get_checkpoint_state(output_dir)
     if expected:
-      pattern = '%s/model.ckpt-.*' % output_dir
+      pattern = '%s/model3124.ckpt-.*' % output_dir
       primary_ckpt_path = ckpt_state.model_checkpoint_path
       self.assertRegexpMatches(primary_ckpt_path, pattern)
       all_ckpt_paths = ckpt_state.all_model_checkpoint_paths

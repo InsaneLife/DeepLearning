@@ -421,7 +421,7 @@ class Word2Vec(object):
         last_summary_time = now
       if now - last_checkpoint_time > opts.checkpoint_interval:
         self.saver.save(self._session,
-                        os.path.join(opts.save_path, "model.ckpt"),
+                        os.path.join(opts.save_path, "model3124.ckpt"),
                         global_step=step.astype(int))
         last_checkpoint_time = now
       if epoch != initial_epoch:
@@ -514,7 +514,7 @@ def main(_):
       model.eval()  # Eval analogies.
     # Perform a final save.
     model.saver.save(session,
-                     os.path.join(opts.save_path, "model.ckpt"),
+                     os.path.join(opts.save_path, "model3124.ckpt"),
                      global_step=model.global_step)
     if FLAGS.interactive:
       # E.g.,

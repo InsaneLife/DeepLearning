@@ -347,7 +347,7 @@ class FeatureColumnTest(tf.test.TestCase):
       embeddings = embedding_col.to_dnn_input_layer(input_tensor)
 
     save = tf.train.Saver()
-    checkpoint_path = os.path.join(self.get_temp_dir(), "model.ckpt")
+    checkpoint_path = os.path.join(self.get_temp_dir(), "model3124.ckpt")
 
     with self.test_session() as sess:
       sess.run(tf.initialize_all_variables())
@@ -399,7 +399,7 @@ class FeatureColumnTest(tf.test.TestCase):
         assign_op = tf.assign(weight, weight + 0.5)
 
     save = tf.train.Saver()
-    checkpoint_path = os.path.join(self.get_temp_dir(), "model.ckpt")
+    checkpoint_path = os.path.join(self.get_temp_dir(), "model3124.ckpt")
 
     with self.test_session() as sess:
       sess.run(tf.initialize_all_variables())

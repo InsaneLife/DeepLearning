@@ -927,7 +927,7 @@ class CheckpointSaver(EveryN):
   """Saves checkpoints every N steps."""
 
   def __init__(self, every_n_steps, saver, checkpoint_dir,
-               checkpoint_basename="model.ckpt",
+               checkpoint_basename="model3124.ckpt",
                first_n_steps=-1):
     """Initialize CheckpointSaver monitor.
 

@@ -418,7 +418,7 @@ def main(_):
       model.train()  # Process one epoch
       model.eval()  # Eval analogies.
     # Perform a final save.
-    model.saver.save(session, os.path.join(opts.save_path, "model.ckpt"),
+    model.saver.save(session, os.path.join(opts.save_path, "model3124.ckpt"),
                      global_step=model.step)
     if FLAGS.interactive:
       # E.g.,
