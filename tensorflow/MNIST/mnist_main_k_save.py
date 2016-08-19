@@ -76,32 +76,32 @@ mnist = input_data.read_data_sets("../../../data/mnist/MNIST_data/", one_hot=Tru
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
 model_name = "../../../data/mnist/model/model3000.ckpt"
-# with tf.Session() as sess:
-#     # sess.run(init_op)
-#     saver.restore(sess, "../../../mnist//model/model31000.ckpt")
-#     time1 = time.time()
-#     for i in range(5000):
-#         batch = mnist.train.next_batch(56)
-#         model_name = "k_minist/model/model" + str(i) + ".ckpt"
-#         if i % 100 == 0:
-#             train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
-#             print "step %d, training accuracy %g" % (i, train_accuracy)
-#             time2 = time.time()
-#             # print time2 - time1
-#             time1 = time2
-#             # if accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}) > 0.999:
-#             #     break
-#         if i % 1000 == 0:
-#
-#             save_path = saver.save(sess, model_name)
-#         train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
-#
-#     print "test accuracy %g" % accuracy.eval(feed_dict={
-#         x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
-#
-#     # Save the variables to disk.
-#     save_path = saver.save(sess, model_name)
-#     print "Model saved in file: ", save_path
+with tf.Session() as sess:
+    sess.run(init_op)
+    # saver.restore(sess, "../../../mnist//model/model31000.ckpt")
+    time1 = time.time()
+    for i in range(5000):
+        batch = mnist.train.next_batch(56)
+        model_name = "k_minist/model/model" + str(i) + ".ckpt"
+        if i % 100 == 0:
+            train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
+            print "step %d, training accuracy %g" % (i, train_accuracy)
+            time2 = time.time()
+            # print time2 - time1
+            time1 = time2
+            # if accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}) > 0.999:
+            #     break
+        if i % 1000 == 0:
+
+            save_path = saver.save(sess, model_name)
+        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+
+    print "test accuracy %g" % accuracy.eval(feed_dict={
+        x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
+
+    # Save the variables to disk.
+    save_path = saver.save(sess, model_name)
+    print "Model saved in file: ", save_path
 
 with tf.Session() as sess:
     # Restore variables from disk.
