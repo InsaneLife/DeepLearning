@@ -29,7 +29,7 @@ def max_pool_2x2(x):
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME')
 
 
-mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+
 sess = tf.InteractiveSession()
 x = tf.placeholder("float", shape=[None, 784])
 y_ = tf.placeholder("float", shape=[None, 10])
@@ -70,43 +70,51 @@ init_op = tf.initialize_all_variables()
 # Add ops to save and restore all the variables.
 saver = tf.train.Saver()
 
+# load data
+mnist = input_data.read_data_sets("../../../data/mnist/MNIST_data/", one_hot=True)
+
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
-with tf.Session() as sess:
-    # sess.run(init_op)
-    saver.restore(sess, "k_minist/model/model3124.ckpt")
-    time1 = time.time()
-    for i in range(31240):
-        batch = mnist.train.next_batch(50)
-        if i % 100 == 0:
-            train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
-            print "step %d, training accuracy %g" % (i, train_accuracy)
-            time2 = time.time()
-            # print time2 - time1
-            time1 = time2
-            # if accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}) > 0.999:
-            #     break
-        train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
-
-    print "test accuracy %g" % accuracy.eval(feed_dict={
-        x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
-
-    # Save the variables to disk.
-    save_path = saver.save(sess, "k_minist/model/model62480.ckpt")
-    print "Model saved in file: ", save_path
+model_name = "../../../data/mnist/model/model3000.ckpt"
+# with tf.Session() as sess:
+#     # sess.run(init_op)
+#     saver.restore(sess, "../../../mnist//model/model31000.ckpt")
+#     time1 = time.time()
+#     for i in range(5000):
+#         batch = mnist.train.next_batch(56)
+#         model_name = "k_minist/model/model" + str(i) + ".ckpt"
+#         if i % 100 == 0:
+#             train_accuracy = accuracy.eval(feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
+#             print "step %d, training accuracy %g" % (i, train_accuracy)
+#             time2 = time.time()
+#             # print time2 - time1
+#             time1 = time2
+#             # if accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}) > 0.999:
+#             #     break
+#         if i % 1000 == 0:
+#
+#             save_path = saver.save(sess, model_name)
+#         train_step.run(feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
+#
+#     print "test accuracy %g" % accuracy.eval(feed_dict={
+#         x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
+#
+#     # Save the variables to disk.
+#     save_path = saver.save(sess, model_name)
+#     print "Model saved in file: ", save_path
 
 with tf.Session() as sess:
     # Restore variables from disk.
-    saver.restore(sess, "k_minist/model/model62480.ckpt")
+    saver.restore(sess, model_name)
     print "Model restored."
     print "test accuracy %g" % accuracy.eval(feed_dict={x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0})
 
     # predict of kaggle test
-    k_test_data, k_test_labels = input_data.get_kaggle_test("k_minist/data/test.csv")
+    k_test_data, k_test_labels = input_data.get_kaggle_test("../../../data/mnist/data/test.csv")
     result = predict.eval(feed_dict={x: k_test_data, y_: k_test_labels, keep_prob: 1.0})
 
     print "saving"
-    out = open('k_minist/data/submit.csv', 'w')
+    out = open('../../../data/mnist//data/submit.csv', 'w')
     out.write('ImageId,Label\n')
     i = 1
     for each in result:

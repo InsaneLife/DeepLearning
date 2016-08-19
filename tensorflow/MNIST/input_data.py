@@ -149,7 +149,7 @@ class DataSet(object):
         end = self._index_in_epoch
         return self._images[start:end], self._labels[start:end]
 
-def get_images_vector(filename ='k_minist/data/train.csv'):
+def get_images_vector(filename ='../../../data/mnist/data/train.csv'):
     """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
     train_images, train_labels, test_images, test_labels = [], [], [], []
     with open(filename) as f:
