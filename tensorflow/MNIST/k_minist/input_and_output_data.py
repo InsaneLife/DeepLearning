@@ -27,7 +27,7 @@ def _read32(bytestream):
     return numpy.frombuffer(bytestream.read(4), dtype=dt)
 
 
-def extract_images(filename = 'data/train.csv'):
+def get_images_vector(filename ='data/train.csv'):
     """Extract the images into a 4D uint8 numpy array [index, y, x, depth]."""
     train_images, train_labels, test_images, test_labels = [], [], [], []
     with open(filename) as f:
@@ -155,7 +155,7 @@ def read_data_sets(local_file = "data/train.csv", k_testfile = "data/test.csv", 
     VALIDATION_SIZE = 5000
 
 
-    train_images, train_labels,  test_images, test_labels = extract_images(local_file)
+    train_images, train_labels,  test_images, test_labels = get_images_vector(local_file)
     validation_images = train_images[:VALIDATION_SIZE]
     validation_labels = train_labels[:VALIDATION_SIZE]
     train_images = train_images[VALIDATION_SIZE:]
