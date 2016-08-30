@@ -223,9 +223,9 @@ with tf.Session(graph=graph) as session:
 
 # Step 6: Visualize the embeddings.
 
-def plot_with_labels(low_dim_embs, labels, filename='tsne.jpg'):
+def plot_with_labels(low_dim_embs, labels, filename='tsne.jpeg'):
     assert low_dim_embs.shape[0] >= len(labels), "More labels than embeddings"
-    fig = plt.figure(figsize=(18, 18))  # in inches
+    plt.figure(figsize=(18, 18))  # in inches
     for i, label in enumerate(labels):
         x, y = low_dim_embs[i, :]
         plt.scatter(x, y)
@@ -236,13 +236,14 @@ def plot_with_labels(low_dim_embs, labels, filename='tsne.jpg'):
                      ha='right',
                      va='bottom')
 
-    savefig(filename)
-    # plt.imsave(filename)
+    plt.show()
+    # plt.savefig(filename)
+    # plt.imsave(filename, fig)
 
 
 try:
     from sklearn.manifold import TSNE
-    import matplotlib.pyplot as plt,savefig
+    import matplotlib.pyplot as plt
 
     tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
     plot_only = 500
