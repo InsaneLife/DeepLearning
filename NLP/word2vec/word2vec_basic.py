@@ -181,7 +181,8 @@ with graph.as_default():
     init = tf.initialize_all_variables()
 
 # Step 5: Begin training.
-num_steps = 100001
+# num_steps = 100001
+num_steps = 10
 
 with tf.Session(graph=graph) as session:
     # We must initialize all variables before we use them.
@@ -236,9 +237,9 @@ def plot_with_labels(low_dim_embs, labels, filename='tsne.jpeg'):
                      ha='right',
                      va='bottom')
 
-    plt.show()
+    # plt.show()
     # plt.savefig(filename)
-    # plt.imsave(filename, fig)
+    plt.savefig('MyFig.jpg')
 
 
 try:
