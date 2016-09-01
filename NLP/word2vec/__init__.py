@@ -8,20 +8,7 @@ import jieba
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-import numpy as np
-
-import matplotlib
-
-matplotlib.use('Agg')
-
-from matplotlib.pyplot import plot, savefig
-
-x = np.linspace(-4, 4, 30)
-y = np.sin(x);
-
-plot(x, y, '--*b')
-
-savefig('MyFig.jpg')
-
-
-
+with open('../../../data/NLP/sougou/result/news_oneline_cut_out.txt') as f:
+    read = f.readlines(10)
+    for each in read:
+        print each.strip()

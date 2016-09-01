@@ -204,24 +204,19 @@ with tf.Session(graph=graph) as session:
 
 # Step 6: Visualize the embeddings.
 
-def write_with_labels(low_dim_embs, labels, out_file='../../../data/NLP/sougou/news_oneline_cut_out.txt'):
-    assert low_dim_embs.shape[0] >= len(labels), "More labels than embeddings"
+def write_with_labels(low_dim_embs, labels, out_file='../../../data/NLP/sougou/result/news_oneline_cut_out.txt'):
     out = open(out_file, 'w')
     for i, label in enumerate(labels):
-        x, y = low_dim_embs[i, :]
-        out.write(label + '\t' + str(x) + '\t' + str(y) + '\n')
+        text = low_dim_embs[i, :]
+        text = [str(each) for each in text]
+        text = ",".join(text)
+        out.write(str(labels[i]) + '\t' + str(text) + '\n')
     out.close()
 
 
 try:
     from sklearn.manifold import TSNE
-    import matplotlib.pyplot as plt
-
-    tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)
-    plot_only = final_embeddings.shape[0]
-    low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
-    labels = [reverse_dictionary[i] for i in xrange(plot_only)]
-    write_with_labels(low_dim_embs, labels)
+    write_with_labels(final_embeddings, reverse_dictionary)
 
 except ImportError:
     print("Please install sklearn and matplotlib to visualize embeddings.")

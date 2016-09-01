@@ -505,9 +505,9 @@ def main(_):
     # if not FLAGS.train_data or not FLAGS.eval_data or not FLAGS.save_path:
     #   print("--train_data --eval_data and --save_path must be specified.")
     #   sys.exit(1)
-    FLAGS.train_data = '../../../data/NLP/sougou/news_oneline.txt'
-    FLAGS.train_data = '../../../data/NLP/sougou/news_oneline.txt'
-    FLAGS.train_data = '../../../data/NLP/sougou/news_oneline.txt'
+    FLAGS.train_data = '../../../data/NLP/sougou/news_oneline_cut.txt'
+    FLAGS.eval_data = '../../../data/NLP/sougou/news_oneline_validation.txt'
+    FLAGS.save_path = '../../../data/NLP/sougou/result/'
     opts = Options()
     with tf.Graph().as_default(), tf.Session() as session:
         with tf.device("/cpu:0"):
