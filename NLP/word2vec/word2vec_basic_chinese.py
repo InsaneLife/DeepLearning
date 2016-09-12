@@ -162,7 +162,7 @@ with graph.as_default():
 
 # Step 5: Begin training.
 # num_steps = 100001
-num_steps = 10
+num_steps = 100001
 
 with tf.Session(graph=graph) as session:
     # We must initialize all variables before we use them.
@@ -213,10 +213,24 @@ def write_with_labels(low_dim_embs, labels, out_file='../../../data/NLP/sougou/r
         out.write(str(labels[i]) + '\t' + str(text) + '\n')
     out.close()
 
+def write_to_scatter(low_dim_embs, labels, out_file='../../../data/NLP/sougou/result/news_oneline_cut_scatter.txt'):
+    out = open(out_file, 'w')
+    for i, label in enumerate(labels):
+        x, y = low_dim_embs[i, :]
+        out.write(str(labels[i]) + '\t' + str(x) + '\t' + str(y) + '\n')
+    out.close()
+
+
 
 try:
     from sklearn.manifold import TSNE
     write_with_labels(final_embeddings, reverse_dictionary)
+
+    tsne = TSNE(perplexity=30, n_components=2, init='pca', n_iter=5000)  # pca processing
+    plot_only = 500
+    low_dim_embs = tsne.fit_transform(final_embeddings[:plot_only, :])
+    labels = [reverse_dictionary[i] for i in xrange(plot_only)]
+    write_to_scatter(low_dim_embs, labels)
 
 except ImportError:
     print("Please install sklearn and matplotlib to visualize embeddings.")
