@@ -239,7 +239,7 @@ def plot_with_labels(low_dim_embs, labels, filename='tsne.jpeg'):
 
     plt.show()
     # plt.savefig(filename)
-    # plt.savefig('MyFig.jpg')
+    plt.savefig('MyFig.jpg')
 
 
 try:
