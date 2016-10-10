@@ -151,7 +151,7 @@ class BaseMonitor(object):
     self._begun = True
 
   def end(self, session=None):
-    """Callback at the end of training/evaluation.
+    """Callback at the end of training/evaluation.txt.
 
     Args:
       session: A `tf.Session` object that can be used to run ops.
@@ -197,7 +197,7 @@ class BaseMonitor(object):
   def step_begin(self, step):
     """Callback before training step begins.
 
-    You may use this callback to request evaluation of additional tensors
+    You may use this callback to request evaluation.txt of additional tensors
     in the graph.
 
     Args:
@@ -220,7 +220,7 @@ class BaseMonitor(object):
     """Callback after training step finished.
 
     This callback provides access to the tensors/ops evaluated at this step,
-    including the additional tensors for which evaluation was requested in
+    including the additional tensors for which evaluation.txt was requested in
     `step_begin`.
 
     In addition, the callback has the opportunity to stop training by returning
@@ -327,7 +327,7 @@ class EveryN(BaseMonitor):
     """Callback after every n'th step finished.
 
     This callback provides access to the tensors/ops evaluated at this step,
-    including the additional tensors for which evaluation was requested in
+    including the additional tensors for which evaluation.txt was requested in
     `step_begin`.
 
     In addition, the callback has the opportunity to stop training by returning
@@ -583,9 +583,9 @@ class SummarySaver(EveryN):
 
 
 class ValidationMonitor(EveryN):
-  """Runs evaluation of a given estimator, at most every N steps.
+  """Runs evaluation.txt of a given estimator, at most every N steps.
 
-  Note that the evaluation is done based on the saved checkpoint, which will
+  Note that the evaluation.txt is done based on the saved checkpoint, which will
   usually be older than the current step.
 
   Can do early stopping on validation metrics if `early_stopping_rounds` is
@@ -668,20 +668,20 @@ class ValidationMonitor(EveryN):
     # that's what is being evaluated.
     if self._estimator is None:
       raise ValueError("Missing call to set_estimator.")
-    # Check that we are not running evaluation on the same checkpoint.
+    # Check that we are not running evaluation.txt on the same checkpoint.
     latest_path = saver_lib.latest_checkpoint(self._estimator.model_dir)
     if latest_path is None:
-      logging.info("Skipping evaluation since model has not been saved yet "
+      logging.info("Skipping evaluation.txt since model has not been saved yet "
                    "at step %d.", step)
       return False
     if latest_path is not None and latest_path == self._latest_path:
-      logging.info("Skipping evaluation due to same checkpoint %s for step %d "
+      logging.info("Skipping evaluation.txt due to same checkpoint %s for step %d "
                    "as for step %d.", latest_path, step, self._latest_path_step)
       return False
     self._latest_path = latest_path
     self._latest_path_step = step
 
-    # Run evaluation and log it.
+    # Run evaluation.txt and log it.
     outputs = self._estimator.evaluate(
         x=self.x, y=self.y, input_fn=self.input_fn, batch_size=self.batch_size,
         steps=self.eval_steps, metrics=self.metrics, name=self.name)

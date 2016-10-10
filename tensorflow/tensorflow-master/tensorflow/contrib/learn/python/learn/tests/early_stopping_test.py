@@ -55,7 +55,7 @@ class EarlyStoppingTest(tf.test.TestCase):
     classifier1.fit(x_train, y_train)
     _ = accuracy_score(y_test, classifier1.predict(x_test))
 
-    # Full 1000 steps, 12 summaries and no evaluation summary.
+    # Full 1000 steps, 12 summaries and no evaluation.txt summary.
     # 12 summaries = global_step + first + every 100 out of 1000 steps.
     self.assertEqual(12, len(_get_summary_events(classifier1.model_dir)))
     with self.assertRaises(ValueError):

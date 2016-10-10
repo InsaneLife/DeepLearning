@@ -607,7 +607,7 @@ def _eval_results_to_str(eval_results):
 
 def _write_summary_results(output_dir, eval_results, current_global_step):
   """Writes eval results into summary file in given dir."""
-  logging.info('Saving evaluation summary for %d step: %s', current_global_step,
+  logging.info('Saving evaluation.txt summary for %d step: %s', current_global_step,
                _eval_results_to_str(eval_results))
   summary_writer = get_summary_writer(output_dir)
   summary = summary_pb2.Summary()
@@ -641,8 +641,8 @@ def evaluate(graph,
   end-of-input signal from a reader operation) is raised from running
   `eval_dict`.
 
-  In each step of evaluation, all tensors in the `eval_dict` are evaluated, and
-  every `log_every_steps` steps, they are logged. At the very end of evaluation,
+  In each step of evaluation.txt, all tensors in the `eval_dict` are evaluated, and
+  every `log_every_steps` steps, they are logged. At the very end of evaluation.txt,
   a summary is evaluated (finding the summary ops using `Supervisor`'s logic)
   and written to `output_dir`.
 
@@ -653,7 +653,7 @@ def evaluate(graph,
     checkpoint_path: A string containing the path to a checkpoint to restore.
       Can be `None` if the graph doesn't require loading any variables.
     eval_dict: A `dict` mapping string names to tensors to evaluate. It is
-      evaluated in every logging step. The result of the final evaluation is
+      evaluated in every logging step. The result of the final evaluation.txt is
       returned. If `update_op` is None, then it's evaluated in every step. If
       `max_steps` is `None`, this should depend on a reader that will raise an
       end-of-inupt exception when the inputs are exhausted.
@@ -662,7 +662,7 @@ def evaluate(graph,
       one is extracted from the graph using the same logic as in `Supervisor`.
       Used to place eval summaries on training curves.
     supervisor_master: The master string to use when preparing the session.
-    log_every_steps: Integer. Output logs every `log_every_steps` evaluation
+    log_every_steps: Integer. Output logs every `log_every_steps` evaluation.txt
       steps. The logs contain the `eval_dict` and timing information.
     feed_fn: A function that is called every iteration to produce a `feed_dict`
       passed to `session.run` calls. Optional.
@@ -673,7 +673,7 @@ def evaluate(graph,
     eval_results: A `dict` mapping `string` to numeric values (`int`, `float`)
       that are the result of running eval_dict in the last step. `None` if no
       eval steps were run.
-    global_step: The global step this evaluation corresponds to.
+    global_step: The global step this evaluation.txt corresponds to.
 
   Raises:
     ValueError: if `output_dir` is empty.
@@ -767,7 +767,7 @@ def evaluate(graph,
       else:
         logging.warn('Input iterator is exhausted: %s.', e)
 
-  # Save summaries for this evaluation.
+  # Save summaries for this evaluation.txt.
   _write_summary_results(output_dir, eval_results, current_global_step)
 
   return eval_results, current_global_step

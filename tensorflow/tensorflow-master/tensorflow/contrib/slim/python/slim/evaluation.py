@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-"""Contains functions for evaluation and summarization of metrics.
+"""Contains functions for evaluation.txt and summarization of metrics.
 
-The evaluation.py module contains helper functions for evaluating TensorFlow
+The evaluation.txt.py module contains helper functions for evaluating TensorFlow
 modules using a variety of metrics and summarizing the results.
 
 **********************
@@ -22,7 +22,7 @@ modules using a variety of metrics and summarizing the results.
 **********************
 
 In the simplest use case, we use a model to create the predictions, then specify
-the metrics and finally call the `evaluation` method:
+the metrics and finally call the `evaluation.txt` method:
 
   # Create model and obtain the predictions:
   images, labels = LoadData(...)
@@ -39,7 +39,7 @@ the metrics and finally call the `evaluation` method:
       tf.initialize_local_variables())
 
   with tf.Session() as sess:
-    metric_values = slim.evaluation(
+    metric_values = slim.evaluation.txt(
         sess,
         num_evals=1,
         init_op=init_op,
@@ -93,7 +93,7 @@ more summaries and call the evaluation_loop method:
 * Evaluating a Checkpointed Model with Summaries *
 **************************************************
 
-At times, an evaluation can be performed without metrics at all but rather
+At times, an evaluation.txt can be performed without metrics at all but rather
 with only summaries. The user need only leave out the 'eval_op' argument:
 
   # Create model and obtain the predictions:
@@ -179,17 +179,17 @@ def evaluation(sess,
                summary_op_feed_dict=None,
                summary_writer=None,
                global_step=None):
-  """Performs a single evaluation run.
+  """Performs a single evaluation.txt run.
 
-  A single evaluation consists of several steps run in the following order:
-  (1) an initialization op, (2) an evaluation op which is executed `num_evals`
+  A single evaluation.txt consists of several steps run in the following order:
+  (1) an initialization op, (2) an evaluation.txt op which is executed `num_evals`
   times (3) a finalization op and (4) the execution of a summary op which is
   written out using a summary writer.
 
   Args:
     sess: The current TensorFlow `Session`.
     num_evals: The number of times to execute `eval_op`.
-    init_op: An operation run at the beginning of evaluation.
+    init_op: An operation run at the beginning of evaluation.txt.
     init_op_feed_dict: A feed dictionary to use when executing `init_op`.
     eval_op: A operation run `num_evals` times.
     eval_op_feed_dict: The feed dictionary to use when executing the `eval_op`.
@@ -271,11 +271,11 @@ def evaluation_loop(master,
     summary_op_feed_dict: An optional feed dictionary to use when running the
       `summary_op`.
     variables_to_restore: A list of TensorFlow variables to restore during
-      evaluation. If the argument is left as `None` then
+      evaluation.txt. If the argument is left as `None` then
       slim.variables.GetVariablesToRestore() is used.
     eval_interval_secs: The minimum number of seconds between evaluations.
-    max_number_of_evaluations: the max number of iterations of the evaluation.
-      If the value is left as 'None', the evaluation continues indefinitely.
+    max_number_of_evaluations: the max number of iterations of the evaluation.txt.
+      If the value is left as 'None', the evaluation.txt continues indefinitely.
   """
   if summary_op == _USE_DEFAULT:
     summary_op = logging_ops.merge_all_summaries()
@@ -304,7 +304,7 @@ def evaluation_loop(master,
   while True:
     last_checkpoint = wait_for_new_checkpoint(checkpoint_dir, last_checkpoint)
     start = time.time()
-    logging.info('Starting evaluation at ' + time.strftime('%Y-%m-%d-%H:%M:%S',
+    logging.info('Starting evaluation.txt at ' + time.strftime('%Y-%m-%d-%H:%M:%S',
                                                            time.gmtime()))
 
     with sv.managed_session(master, start_standard_services=False) as sess:
@@ -321,7 +321,7 @@ def evaluation_loop(master,
                  summary_writer=summary_writer,
                  global_step=global_step)
 
-    logging.info('Finished evaluation at ' + time.strftime('%Y-%m-%d-%H:%M:%S',
+    logging.info('Finished evaluation.txt at ' + time.strftime('%Y-%m-%d-%H:%M:%S',
                                                            time.gmtime()))
     number_of_evaluations += 1
     if (max_number_of_evaluations and

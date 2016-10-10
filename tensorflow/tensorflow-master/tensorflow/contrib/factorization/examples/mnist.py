@@ -100,7 +100,7 @@ def do_eval(sess,
             images_placeholder,
             labels_placeholder,
             data_set):
-  """Runs one evaluation against the full epoch of data.
+  """Runs one evaluation.txt against the full epoch of data.
 
   Args:
     sess: The session in which the model has been trained.
@@ -214,7 +214,7 @@ def run_training():
     train_op = tf.group(mnist.training(loss, FLAGS.learning_rate),
                         kmeans_training_op)
 
-    # Add the Op to compare the logits to the labels during evaluation.
+    # Add the Op to compare the logits to the labels during evaluation.txt.
     eval_correct = mnist.evaluation(logits, labels_placeholder)
 
     # Add the variable initializer Op.

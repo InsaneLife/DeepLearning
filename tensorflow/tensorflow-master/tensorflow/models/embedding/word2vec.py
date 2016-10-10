@@ -332,7 +332,7 @@ class Word2Vec(object):
                                          min(1000, self._options.vocab_size))
 
     # Nodes in the construct graph which are used by training and
-    # evaluation to run/feed/fetch.
+    # evaluation.txt to run/feed/fetch.
     self._analogy_a = analogy_a
     self._analogy_b = analogy_b
     self._analogy_c = analogy_c

@@ -124,7 +124,7 @@ class LogisticRegressor(estimator.Estimator):
                steps=None,
                metrics=None,
                name=None):
-    """Evaluates given model with provided evaluation data.
+    """Evaluates given model with provided evaluation.txt data.
 
     See superclass Estimator for more details.
 
@@ -136,10 +136,10 @@ class LogisticRegressor(estimator.Estimator):
       batch_size: minibatch size to use on the input.
       steps: Number of steps for which to evaluate model.
       metrics: Dict of metric ops to run. If None, the default metrics are used.
-      name: Name of the evaluation.
+      name: Name of the evaluation.txt.
 
     Returns:
-      Returns `dict` with evaluation results.
+      Returns `dict` with evaluation.txt results.
     """
     metrics = metrics or self.get_default_metrics(thresholds=self._thresholds)
     return super(LogisticRegressor, self).evaluate(x=x,

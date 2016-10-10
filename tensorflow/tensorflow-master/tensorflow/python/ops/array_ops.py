@@ -1400,7 +1400,7 @@ def pad(tensor, paddings, mode="CONSTANT", name=None):  # pylint: disable=invali
 
 
 def meshgrid(*args, **kwargs):
-  """Broadcasts parameters for evaluation on an N-D grid.
+  """Broadcasts parameters for evaluation.txt on an N-D grid.
 
   Given N one-dimensional coordinate arrays `*args`, returns a list `outputs`
   of N-D coordinate arrays for evaluating expressions on an N-D grid.

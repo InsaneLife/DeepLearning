@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-"""##Ops for evaluation metrics and summary statistics.
+"""##Ops for evaluation.txt metrics and summary statistics.
 
 ### API
 
@@ -40,7 +40,7 @@ print('Final Mean: %f' % mean_value.eval())
 
 Each metric function adds nodes to the graph that hold the state necessary to
 compute the value of the metric as well as a set of operations that actually
-perform the computation. Every metric evaluation is composed of three steps
+perform the computation. Every metric evaluation.txt is composed of three steps
 
 * Initialization: initializing the metric state.
 * Aggregation: updating the values of the metric state.

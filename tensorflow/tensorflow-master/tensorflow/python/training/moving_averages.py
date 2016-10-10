@@ -131,7 +131,7 @@ class ExponentialMovingAverage(object):
   It is used when building the training model.  The ops that maintain moving
   averages are typically run after each training step.
   The `average()` and `average_name()` methods give access to the shadow
-  variables and their names.  They are useful when building an evaluation
+  variables and their names.  They are useful when building an evaluation.txt
   model, or when restoring a model from a checkpoint file.  They help use the
   moving averages in place of the last trained values for evaluations.
 

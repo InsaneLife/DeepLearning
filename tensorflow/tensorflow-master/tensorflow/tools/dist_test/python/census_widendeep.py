@@ -13,7 +13,7 @@
 # limitations under the License.
 # ==============================================================================
 
-"""Distributed training and evaluation of a wide&deep model.
+"""Distributed training and evaluation.txt of a wide&deep model.
 """
 
 
@@ -44,7 +44,7 @@ flags.DEFINE_integer("num_parameter_servers", 0,
 flags.DEFINE_integer("worker_index", 0,
                      "Worker index (>=0)")
 flags.DEFINE_integer("train_steps", 1000, "Number of training steps")
-flags.DEFINE_integer("eval_steps", 1, "Number of evaluation steps")
+flags.DEFINE_integer("eval_steps", 1, "Number of evaluation.txt steps")
 
 FLAGS = flags.FLAGS
 

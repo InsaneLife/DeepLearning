@@ -410,7 +410,7 @@ class MultivariateNormalDiag(MultivariateNormalOperatorPD):
   assumes the random variables, `(X_1,...,X_k)` are independent, thus no
   non-diagonal terms of the covariance matrix are needed.
 
-  This allows for `O(k)` pdf evaluation, sampling, and storage.
+  This allows for `O(k)` pdf evaluation.txt, sampling, and storage.
 
   #### Mathematical details
 
@@ -516,7 +516,7 @@ class MultivariateNormalDiagPlusVDVT(MultivariateNormalOperatorPD):
   D = is diagonal (r x r), optional (defaults to identity).
   ```
 
-  This allows for `O(kr + r^3)` pdf evaluation and determinant, and `O(kr)`
+  This allows for `O(kr + r^3)` pdf evaluation.txt and determinant, and `O(kr)`
   sampling and storage (per batch member).
 
   #### Examples
@@ -611,7 +611,7 @@ class MultivariateNormalCholesky(MultivariateNormalOperatorPD):
   """The multivariate normal distribution on `R^k`.
 
   This distribution is defined by a 1-D mean `mu` and a Cholesky factor `chol`.
-  Providing the Cholesky factor allows for `O(k^2)` pdf evaluation and sampling,
+  Providing the Cholesky factor allows for `O(k^2)` pdf evaluation.txt and sampling,
   and requires `O(k^2)` storage.
 
   #### Mathematical details

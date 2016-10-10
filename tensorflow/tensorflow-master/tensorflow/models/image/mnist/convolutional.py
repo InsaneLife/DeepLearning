@@ -185,7 +185,7 @@ def main(argv=None):  # pylint: disable=unused-argument
       0.1, shape=[NUM_LABELS], dtype=data_type()))
 
   # We will replicate the model structure for the training subgraph, as well
-  # as the evaluation subgraphs, while sharing the trainable parameters.
+  # as the evaluation.txt subgraphs, while sharing the trainable parameters.
   def model(data, train=False):
     """The Model definition."""
     # 2D convolution, with 'SAME' padding (i.e. the output feature map has
@@ -222,7 +222,7 @@ def main(argv=None):  # pylint: disable=unused-argument
     # broadcasts the biases.
     hidden = tf.nn.relu(tf.matmul(reshape, fc1_weights) + fc1_biases)
     # Add a 50% dropout during training only. Dropout also scales
-    # activations such that no rescaling is needed at evaluation time.
+    # activations such that no rescaling is needed at evaluation.txt time.
     if train:
       hidden = tf.nn.dropout(hidden, 0.5, seed=SEED)
     return tf.matmul(hidden, fc2_weights) + fc2_biases

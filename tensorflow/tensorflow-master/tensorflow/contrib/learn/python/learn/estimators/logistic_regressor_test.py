@@ -53,7 +53,7 @@ def _logistic_regression_model_fn(features, targets):
 class LogisticRegressorTest(tf.test.TestCase):
 
   def test_fit_and_evaluate_metrics(self):
-    """Tests basic fit and evaluate, and checks the evaluation metrics."""
+    """Tests basic fit and evaluate, and checks the evaluation.txt metrics."""
     regressor = tf.contrib.learn.LogisticRegressor(
         model_fn=_logistic_regression_model_fn)
 

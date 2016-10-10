@@ -242,7 +242,7 @@ class Word2Vec(object):
                              opts.vocab_counts[i]))
 
   def build_eval_graph(self):
-    """Build the evaluation graph."""
+    """Build the evaluation.txt graph."""
     # Eval graph
     opts = self._options
 
@@ -286,7 +286,7 @@ class Word2Vec(object):
                                          min(1000, opts.vocab_size))
 
     # Nodes in the construct graph which are used by training and
-    # evaluation to run/feed/fetch.
+    # evaluation.txt to run/feed/fetch.
     self._analogy_a = analogy_a
     self._analogy_b = analogy_b
     self._analogy_c = analogy_c

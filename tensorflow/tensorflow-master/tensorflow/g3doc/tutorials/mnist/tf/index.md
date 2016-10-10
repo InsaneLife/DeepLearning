@@ -450,14 +450,14 @@ do_eval(sess,
 ### Build the Eval Graph
 
 Before entering the training loop, the Eval op should have been built
-by calling the `evaluation()` function from `mnist.py` with the same
+by calling the `evaluation.txt()` function from `mnist.py` with the same
 logits/labels parameters as the `loss()` function.
 
 ```python
 eval_correct = mnist.evaluation(logits, labels_placeholder)
 ```
 
-The `evaluation()` function simply generates a [`tf.nn.in_top_k`](../../../api_docs/python/nn.md#in_top_k)
+The `evaluation.txt()` function simply generates a [`tf.nn.in_top_k`](../../../api_docs/python/nn.md#in_top_k)
 op that can automatically score each model output as correct if the true label
 can be found in the K most-likely predictions.  In this case, we set the value
 of K to 1 to only consider a prediction correct if it is for the true label.

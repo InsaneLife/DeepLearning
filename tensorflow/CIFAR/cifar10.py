@@ -161,7 +161,7 @@ def distorted_inputs():
 
 
 def inputs(eval_data):
-  """Construct input for CIFAR evaluation using the Reader ops.
+  """Construct input for CIFAR evaluation.txt using the Reader ops.
 
   Args:
     eval_data: bool, indicating if one should use the train or eval data set.

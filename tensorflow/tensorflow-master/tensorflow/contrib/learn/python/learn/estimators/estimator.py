@@ -54,7 +54,7 @@ class ModeKeys(object):
   The following standard keys are defined:
 
   * `TRAIN`: training mode.
-  * `EVAL`: evaluation mode.
+  * `EVAL`: evaluation.txt mode.
   * `INFER`: inference mode.
   """
 
@@ -293,18 +293,18 @@ class BaseEstimator(sklearn.BaseEstimator):
                steps=None,
                metrics=None,
                name=None):
-    """Evaluates given model with provided evaluation data.
+    """Evaluates given model with provided evaluation.txt data.
 
     Evaluates on the given input data. If `input_fn` is provided, that
     input function should raise an end-of-input exception (`OutOfRangeError` or
     `StopIteration`) after one epoch of the training data has been provided.
 
-    By default, the whole evaluation dataset is used. If `steps` is provided,
+    By default, the whole evaluation.txt dataset is used. If `steps` is provided,
     only `steps` batches of size `batch_size` are processed.
 
     The return value is a dict containing the metrics specified in `metrics`, as
     well as an entry `global_step` which contains the value of the global step
-    for which this evaluation was performed.
+    for which this evaluation.txt was performed.
 
     Args:
       x: Matrix of shape [n_samples, n_features...]. Can be iterator that
@@ -334,11 +334,11 @@ class BaseEstimator(sklearn.BaseEstimator):
         Metric ops should support streaming, e.g., returning
         update_op and value tensors. See more details in
         ../../../../metrics/python/metrics/ops/streaming_metrics.py.
-      name: Name of the evaluation if user needs to run multiple evaluations on
+      name: Name of the evaluation.txt if user needs to run multiple evaluations on
         different data sets, such as on training data vs test data.
 
     Returns:
-      Returns `dict` with evaluation results.
+      Returns `dict` with evaluation.txt results.
 
     Raises:
       ValueError: If at least one of `x` or `y` is provided, and at least one of
@@ -448,7 +448,7 @@ class BaseEstimator(sklearn.BaseEstimator):
     pass
 
   def _get_eval_ops(self, features, targets, metrics):
-    """Method that builds model graph and returns evaluation ops.
+    """Method that builds model graph and returns evaluation.txt ops.
 
     Expected to be overriden by sub-classes that require custom support.
 
@@ -764,7 +764,7 @@ class Estimator(BaseEstimator):
                  passed. If the `model_fn`'s signature does not accept
                  `mode`, the `model_fn` must still be able to handle
                  `targets=None`.
-          * `mode` represents if this training, evaluation or
+          * `mode` represents if this training, evaluation.txt or
                  prediction. See `ModeKeys`.
           * `params` is a `dict` of hyperparameters. Will receive what
                  is passed to Estimator in `params` parameter. This allows
@@ -823,7 +823,7 @@ class Estimator(BaseEstimator):
     return train_op, loss
 
   def _get_eval_ops(self, features, targets, metrics):
-    """Method that builds model graph and returns evaluation ops.
+    """Method that builds model graph and returns evaluation.txt ops.
 
     Expected to be overriden by sub-classes that require custom support.
     This implementation uses `model_fn` passed as parameter to constructor to

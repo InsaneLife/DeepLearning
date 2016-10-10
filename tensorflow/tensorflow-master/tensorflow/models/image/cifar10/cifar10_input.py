@@ -195,7 +195,7 @@ def distorted_inputs(data_dir, batch_size):
 
 
 def inputs(eval_data, data_dir, batch_size):
-  """Construct input for CIFAR evaluation using the Reader ops.
+  """Construct input for CIFAR evaluation.txt using the Reader ops.
 
   Args:
     eval_data: bool, indicating if one should use the train or eval data set.
@@ -228,7 +228,7 @@ def inputs(eval_data, data_dir, batch_size):
   height = IMAGE_SIZE
   width = IMAGE_SIZE
 
-  # Image processing for evaluation.
+  # Image processing for evaluation.txt.
   # Crop the central [height, width] of the image.
   resized_image = tf.image.resize_image_with_crop_or_pad(reshaped_image,
                                                          width, height)

@@ -433,7 +433,7 @@ class BaseSession(SessionInterface):
   """A class for interacting with a TensorFlow computation.
 
   The BaseSession enables incremental graph building with inline
-  execution of Operations and evaluation of Tensors.
+  execution of Operations and evaluation.txt of Tensors.
   """
 
   def __init__(self, target='', graph=None, config=None):

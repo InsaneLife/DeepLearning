@@ -197,7 +197,7 @@ class DNNLinearCombinedClassifierTest(tf.test.TestCase):
     self.assertGreater(scores['accuracy'], 0.9)
 
   def testEvaluationShouldUseWeightColumn(self):
-    """Tests weight column in evaluation."""
+    """Tests weight column in evaluation.txt."""
 
     def _input_fn_train():
       # Create 4 rows, one of them (y = x), three of them (y=Not(x))
@@ -293,7 +293,7 @@ class DNNLinearCombinedClassifierTest(tf.test.TestCase):
     self.assertGreater(scores['accuracy'], 0.9)
 
   def testPredict(self):
-    """Tests weight column in evaluation."""
+    """Tests weight column in evaluation.txt."""
     def _input_fn_train():
       # Create 4 rows, one of them (y = x), three of them (y=Not(x))
       target = tf.constant([[1], [0], [0], [0]])
@@ -326,7 +326,7 @@ class DNNLinearCombinedClassifierTest(tf.test.TestCase):
     self.assertListEqual([0] * 4, list(classes))
 
   def testCustomMetrics(self):
-    """Tests custom evaluation metrics."""
+    """Tests custom evaluation.txt metrics."""
 
     def _input_fn_train():
       # Create 4 rows, one of them (y = x), three of them (y=Not(x))

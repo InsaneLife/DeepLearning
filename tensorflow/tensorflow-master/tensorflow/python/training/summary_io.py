@@ -135,7 +135,7 @@ class SummaryWriter(object):
     [`Tensor.eval()`](framework.md#Tensor.eval), to this
     function. Alternatively, you can pass a `tf.Summary` protocol
     buffer that you populate with your own data. The latter is
-    commonly done to report evaluation results in event files.
+    commonly done to report evaluation.txt results in event files.
 
     Args:
       summary: A `Summary` protocol buffer, optionally serialized as a string.

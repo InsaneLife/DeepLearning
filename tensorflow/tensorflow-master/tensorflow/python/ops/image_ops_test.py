@@ -618,7 +618,7 @@ class CropToBoundingBoxTest(test_util.TensorFlowTestCase):
                          target_height, target_width,
                          "all dims of 'image.shape' must be > 0",
                          use_tensor_inputs_options=[False])
-      # Multiple assertion could fail, but the evaluation order is arbitrary.
+      # Multiple assertion could fail, but the evaluation.txt order is arbitrary.
       # Match gainst generic pattern.
       self._assertRaises(x, x_shape, offset_height, offset_width,
                          target_height, target_width,

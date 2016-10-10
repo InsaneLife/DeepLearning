@@ -39,7 +39,7 @@ Train and evaluate TensorFlow models.
 
 ## Graph actions
 
-Perform various training, evaluation, and inference actions on a graph.
+Perform various training, evaluation.txt, and inference actions on a graph.
 
 @@NanLossDuringTrainingError
 @@RunConfig

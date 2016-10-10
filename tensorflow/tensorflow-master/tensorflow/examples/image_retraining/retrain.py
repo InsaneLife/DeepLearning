@@ -115,7 +115,7 @@ tf.app.flags.DEFINE_integer('test_batch_size', 500,
                             """ the overall accuracy of the model.""")
 tf.app.flags.DEFINE_integer(
     'validation_batch_size', 100,
-    """How many images to use in an evaluation batch. This validation set is"""
+    """How many images to use in an evaluation.txt batch. This validation set is"""
     """ used much more often than the test set, and is an early indicator of"""
     """ how accurate the model is during training.""")
 
@@ -863,7 +863,7 @@ def main(_):
       print('%s: Step %d: Validation accuracy = %.1f%%' %
             (datetime.now(), i, validation_accuracy * 100))
 
-  # We've completed all our training, so run a final test evaluation on
+  # We've completed all our training, so run a final test evaluation.txt on
   # some new images we haven't used before.
   test_bottlenecks, test_ground_truth = get_random_cached_bottlenecks(
       sess, image_lists, FLAGS.test_batch_size, 'testing',

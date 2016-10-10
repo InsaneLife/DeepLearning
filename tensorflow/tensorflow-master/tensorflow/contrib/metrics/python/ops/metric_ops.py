@@ -1756,7 +1756,7 @@ def streaming_mean_iou(predictions,
                        name=None):
   """Calculate per-step mean Intersection-Over-Union (mIOU).
 
-  Mean Intersection-Over-Union is a common evaluation metric for
+  Mean Intersection-Over-Union is a common evaluation.txt metric for
   semantic image segmentation, which first computes the IOU for each
   semantic class and then computes the average over classes.
   IOU is defined as follows:

@@ -49,9 +49,9 @@ class Experiment(object):
     Args:
       estimator: `Estimator` object.
       train_input_fn: function, returns features and targets for training.
-      eval_input_fn: function, returns features and targets for evaluation. If
+      eval_input_fn: function, returns features and targets for evaluation.txt. If
         `eval_steps` is `None`, this should be configured only to produce for a
-        finite number of batches (generally, 1 epoch over the evaluation data).
+        finite number of batches (generally, 1 epoch over the evaluation.txt data).
       eval_metrics: `dict` of string, metric function. If `None`, default set
         is used.
       train_steps: Perform this many steps of training. `None`, the default,
@@ -61,11 +61,11 @@ class Experiment(object):
       train_monitors: A list of monitors to pass to the `Estimator`'s `fit`
         function.
       local_eval_frequency: Frequency of running eval in steps,
-        when running locally. If `None`, runs evaluation only at the end of
+        when running locally. If `None`, runs evaluation.txt only at the end of
         training.
       eval_delay_secs: Start evaluating after waiting for this many seconds.
       continuous_eval_throttle_secs: Do not re-evaluate unless the last
-        evaluation was started at least this many seconds ago for
+        evaluation.txt was started at least this many seconds ago for
         continuous_eval().
     """
     super(Experiment, self).__init__()
@@ -107,11 +107,11 @@ class Experiment(object):
                                monitors=self._train_monitors)
 
   def evaluate(self, delay_secs=None):
-    """Evaluate on the evaluation data.
+    """Evaluate on the evaluation.txt data.
 
-    Runs evaluation on the evaluation data and returns the result. Runs for
+    Runs evaluation.txt on the evaluation.txt data and returns the result. Runs for
     `self._eval_steps` steps, or if it's `None`, then run until input is
-    exhausted or another exception is raised. Start the evaluation after
+    exhausted or another exception is raised. Start the evaluation.txt after
     `delay_secs` seconds, or if it's `None`, defaults to using
     `self._eval_delay_secs` seconds.
 
@@ -156,17 +156,17 @@ class Experiment(object):
                        throttle_delay_secs):
     """Run continuous eval.
 
-    Runs infinite eval on the evaluation data set. This function starts
+    Runs infinite eval on the evaluation.txt data set. This function starts
     evaluating after `delay_secs` seconds and then runs no more than one
-    evaluation (with `self._eval_steps` steps each time) per
+    evaluation.txt (with `self._eval_steps` steps each time) per
     `throttle_delay_secs`. It never returns.
 
     Args:
       input_fn: The input to use for this eval.
-      name: A string appended to the folder name of evaluation results.
+      name: A string appended to the folder name of evaluation.txt results.
       delay_secs: Start evaluating after this many seconds. If None, defaults to
         self._eval_delay_secs.
-      throttle_delay_secs: Do not re-evaluate unless the last evaluation was
+      throttle_delay_secs: Do not re-evaluate unless the last evaluation.txt was
         started at least this many seconds ago. If None, defaults to
         self._continuous_eval_throttle_secs.
     """
@@ -187,7 +187,7 @@ class Experiment(object):
                                  metrics=self._eval_metrics,
                                  name=name)
       except NotFittedError:
-        logging.warning("Estimator is not fitted yet, skipping evaluation.")
+        logging.warning("Estimator is not fitted yet, skipping evaluation.txt.")
       duration = time.time() - start
       if duration < throttle_delay_secs:
         difference = throttle_delay_secs - duration

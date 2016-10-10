@@ -149,10 +149,10 @@ class _Bijector(object):
     return self._name
 
   def forward(self, x, name='forward'):
-    """Returns the forward bijector evaluation, i.e., X = g(Y).
+    """Returns the forward bijector evaluation.txt, i.e., X = g(Y).
 
     Args:
-      x: `Tensor`. The input to the "forward" evaluation.
+      x: `Tensor`. The input to the "forward" evaluation.txt.
       name: The name to give this op.
 
     Returns:
@@ -164,10 +164,10 @@ class _Bijector(object):
         return self._forward(x)
 
   def inverse(self, x, name='inverse'):
-    """Returns the inverse bijector evaluation, i.e., X = g^{-1}(Y).
+    """Returns the inverse bijector evaluation.txt, i.e., X = g^{-1}(Y).
 
     Args:
-      x: `Tensor`. The input to the "inverse" evaluation.
+      x: `Tensor`. The input to the "inverse" evaluation.txt.
       name: The name to give this op.
 
     Returns:
@@ -187,7 +187,7 @@ class _Bijector(object):
     Mathematically, returns: log(det(dY/dX g^{-1}))(Y).
 
     Args:
-      x: `Tensor`. The input to the "inverse" Jacobian evaluation.
+      x: `Tensor`. The input to the "inverse" Jacobian evaluation.txt.
       name: The name to give this op.
 
     Returns:
@@ -203,7 +203,7 @@ class _Bijector(object):
 
   def inverse_and_inverse_log_det_jacobian(
       self, x, name='inverse_and_inverse_log_det_jacobian'):
-    """Returns both the inverse evaluation and inverse_log_det_jacobian.
+    """Returns both the inverse evaluation.txt and inverse_log_det_jacobian.
 
     Enables possibly more efficient calculation when both inverse and
     corresponding Jacobian are needed.
@@ -211,7 +211,7 @@ class _Bijector(object):
     See `inverse()`, `inverse_log_det_jacobian()` for more details.
 
     Args:
-      x: `Tensor`. The input to the "inverse" Jacobian evaluation.
+      x: `Tensor`. The input to the "inverse" Jacobian evaluation.txt.
       name: The name to give this op.
 
     Returns:
@@ -230,7 +230,7 @@ class _Bijector(object):
     """Subclass implementation of forward().
 
     Args:
-      x: `Tensor`. The input to the "forward" evaluation.
+      x: `Tensor`. The input to the "forward" evaluation.txt.
 
     Raises:
       `NotImplementedError`: if subclass implementation not provided
@@ -244,7 +244,7 @@ class _Bijector(object):
     """Subclass implementation of inverse().
 
     Args:
-      x: `Tensor`. The input to the "inverse" evaluation.
+      x: `Tensor`. The input to the "inverse" evaluation.txt.
 
     Raises:
       `NotImplementedError`: if subclass implementation not provided
@@ -258,7 +258,7 @@ class _Bijector(object):
     """Subclass implementation of inverse_log_det_jacobian().
 
     Args:
-      x: `Tensor`. The input to the "inverse" Jacobian evaluation.
+      x: `Tensor`. The input to the "inverse" Jacobian evaluation.txt.
 
     Raises:
       `NotImplementedError`: if subclass implementation not provided
@@ -272,7 +272,7 @@ class _Bijector(object):
     """Subclass implementation of inverse_and_inverse_log_det_jacobian().
 
     Args:
-      x: `Tensor`. The input to the "inverse" evaluation.
+      x: `Tensor`. The input to the "inverse" evaluation.txt.
 
     Returns:
       List of two `Tensor` items, inverse and inverse_log_det_jacobian.

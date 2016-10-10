@@ -87,7 +87,7 @@ def run_training():
     # Add to the Graph the Ops that calculate and apply gradients.
     train_op = mnist.training(loss, FLAGS.learning_rate)
 
-    # Add the Op to compare the logits to the labels during evaluation.
+    # Add the Op to compare the logits to the labels during evaluation.txt.
     eval_correct = mnist.evaluation(logits, labels)
 
     # Build the summary operation based on the TF collection of Summaries.
