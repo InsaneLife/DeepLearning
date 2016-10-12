@@ -1,5 +1,5 @@
-#! /usr/bin/env python
-
+#coding=utf-8
+from __future__ import division
 import tensorflow as tf
 import numpy as np
 import os
@@ -8,7 +8,10 @@ import datetime
 import data_helpers
 from text_cnn import TextCNN
 from tensorflow.contrib import learn
-
+from sklearn import preprocessing
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.metrics import auc
 # Parameters
 # ==================================================
 
@@ -35,7 +38,6 @@ for attr, value in sorted(FLAGS.__flags.items()):
     print("{}={}".format(attr.upper(), value))
 print("")
 
-
 # Data Preparatopn
 # ==================================================
 
@@ -54,7 +56,7 @@ shuffle_indices = np.random.permutation(np.arange(len(y)))
 x_shuffled = x[shuffle_indices]
 y_shuffled = y[shuffle_indices]
 
-v_size = len(x_shuffled)*0.1
+v_size = len(x_shuffled) * 0.1
 # Split train/test set
 # TODO: This is very crude, should use cross-validation
 x_train, x_dev = x_shuffled[:-v_size], x_shuffled[-v_size:]
@@ -62,14 +64,13 @@ y_train, y_dev = y_shuffled[:-v_size], y_shuffled[-v_size:]
 print("Vocabulary Size: {:d}".format(len(vocab_processor.vocabulary_)))
 print("Train/Dev split: {:d}/{:d}".format(len(y_train), len(y_dev)))
 
-
 # restore model
 # ==================================================
 model_path = "../../../data/yibao/panzhihua/cnn-text-classification-tf-master/runs/1476002742/checkpoints/model-22400"
 with tf.Graph().as_default():
     session_conf = tf.ConfigProto(
-      allow_soft_placement=FLAGS.allow_soft_placement,
-      log_device_placement=FLAGS.log_device_placement)
+        allow_soft_placement=FLAGS.allow_soft_placement,
+        log_device_placement=FLAGS.log_device_placement)
     sess = tf.Session(config=session_conf)
     with sess.as_default():
         cnn = TextCNN(
@@ -99,7 +100,9 @@ with tf.Graph().as_default():
 
         # Output directory for models and summaries
         timestamp = str(int(time.time()))
-        out_dir = os.path.abspath(os.path.join(os.path.curdir, "../../../data/yibao/panzhihua/cnn-text-classification-tf-master/runs", timestamp))
+        out_dir = os.path.abspath(
+            os.path.join(os.path.curdir, "../../../data/yibao/panzhihua/cnn-text-classification-tf-master/runs",
+                         timestamp))
         print("Writing to {}\n".format(out_dir))
 
         # Summaries for loss and accuracy
@@ -136,8 +139,46 @@ with tf.Graph().as_default():
             cnn.input_y: y_dev,
             cnn.dropout_keep_prob: 1.0
         }
-        loss, accuracy, scores= sess.run(
-            [cnn.loss, cnn.accuracy, cnn.scores],
+        loss, accuracy, scores, predictions = sess.run(
+            [cnn.loss, cnn.accuracy, cnn.scores, cnn.predictions],
             feed_dict)
-        print scores
-        print("loss {:g}, acc {:g}".format(loss, accuracy))
+
+        # scores of score[1]-score[0]
+        scores_1 = [score[1] - score[0] for score in scores]
+        y_1 = [score[1] for score in y_dev]
+        # range to [0,1]
+        min_max = preprocessing.MinMaxScaler()
+        scores1 = min_max.fit_transform(scores_1)
+
+
+        roc = []
+        for threshold in range(0, 1000):  # threshold = 0.171
+            tp_count, fp_count, p_count, n_count = 0, 0, 0, 0
+            threshold = threshold / 1000
+            for i in range(len(scores)):
+                predict = scores1[i] > threshold
+                if y_1[i] == 1:
+                    p_count += 1
+                    if predict == 1:
+                        tp_count += 1
+                else:
+                    n_count += 1
+                    if predict == 1:
+                        fp_count += 1
+            roc.append([fp_count / n_count, tp_count / p_count])
+
+        # print("loss {:g}, acc {:g}".format(loss, accuracy))
+
+        plt.figure(3)  # 选择图表3
+        years = [x[0] for x in roc]
+        price = [x[1] for x in roc]
+        plt.plot(years, price, 'b*')  # ,label=$cos(x^2)$)
+        plt.plot(years, price, 'r')
+        plt.xlabel('FPR')
+        plt.ylabel('TPR')
+        plt.ylim(0, 1)
+        plt.title('line_regression & gradient decrease')
+        plt.legend()
+        plt.show()
+
+        print auc(years,price)

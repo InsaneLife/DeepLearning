@@ -26,7 +26,7 @@ import zipfile
 import numpy as np
 import tensorflow as tf
 
-filename = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/kc25k2.txt'
+filename = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/oneline_cut.txt'
 
 
 # Read the data into a list of strings.
@@ -41,7 +41,7 @@ words = read_data(filename)
 print('Data size', len(words))
 
 # Step 2: Build the dictionary and replace rare words with UNK token.
-vocabulary_size = 33417
+vocabulary_size = 33591
 
 
 def build_dataset(words):
@@ -217,7 +217,7 @@ def write_with_labels(low_dim_embs, labels,
 
 
 def write_to_scatter(low_dim_embs, labels,
-                     out_file='/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua//kc25k2_oneline_cut_scatter.txt'):
+                     out_file='../../../data/yibao/panzhihua//kc25k2_oneline_cut_scatter.txt'):
     out = open(out_file, 'w')
     for i, label in enumerate(labels):
         x, y = low_dim_embs[i, :]

@@ -35,7 +35,7 @@ def oracle_query_clob(sql, url='CSI_PZH/123456@192.168.2.98:1521/orcl'):
     return rows
 
 
-sql = "select ykc101 from kc25k2"
+sql = "select ykc100||','||ykc101 from kc25k2"
 rows = oracle_query_clob(sql)
 file_path = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/oneline_cut.txt'
 with open(file_path, 'w') as out:

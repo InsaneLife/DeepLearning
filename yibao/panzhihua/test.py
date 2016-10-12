@@ -6,20 +6,18 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 import re
 
-def get_max_len(file_path = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/word_cut.txt'):
-    max = 0
+def get_max_len(file_path = '../../../data/yibao/panzhihua//kc25k2_oneline_cut_out.txt'):
+    vec_map = dict()
     with open(file_path) as f:
         for line in f:
-            length = line.split(" ").__len__()
-            if length > max:
-                max = length
+            word = line.strip("\n").split("\t")[0]
+            vec = line.strip("\n").split("\t")[1].split(",")
+            vec_map[word] = vec
 
-    print length
-    return length
+    return vec_map
 
-get_max_len()
 
-string = "asdsa，"
-string = re.sub(r"，", "", string)
-print string
+vec_map = get_max_len()
+print vec_map.__len__()
+
 

@@ -38,11 +38,11 @@ def oracle_query_clob(sql, url='CSI_PZH/123456@192.168.2.98:1521/orcl'):
 
 
 # sql = "select ykc101 from kc25k2"
-sql = "SELECT k.ykc605,k2.ykc101 FROM kc25 K LEFT JOIN kc25k2 k2 ON k.ykc009=k2.ykc009 where k.ykc605 IN ( 'J44.100','I25.103','J20.900','E11.900','H25.900','I67.803','M51.202','I10.x05','I10.x00','N20.100') and length(k2.ykc101) >1"
-rows = oracle_query_clob(sql)
+sql = "SELECT k.ykc605,k2.ykc100 FROM kc25 K LEFT JOIN kc25k2 k2 ON k.ykc009=k2.ykc009 where k.ykc605 IN ( 'J44.100','I25.103','J20.900','E11.900','H25.900','I67.803','M51.202','I10.x05','I10.x00','N20.100') and length(k2.ykc100) >1"
+rows = oracle_query(sql)
 
 # jieba.load_userdict("../../../data/NLP/participle/lexicon/ciku.txt")
-file_path = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/word_cut.txt'
+file_path = '../../../../data/yibao/panzhihua/ykc100_cut_top10.txt'
 with open(file_path, 'w') as out:
     for disease, each in rows:
         each = each.replace("\n","").replace("\r","").replace("\t","")
