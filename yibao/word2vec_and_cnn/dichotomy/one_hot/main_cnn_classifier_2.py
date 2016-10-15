@@ -23,37 +23,37 @@ def bias_variable(shape):
 
 
 def conv2d(x, W):
-    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='VALID')
+    return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
 
 def max_pool_2x2(x):
-    return tf.nn.max_pool(x, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='VALID')
+    return tf.nn.max_pool(x, ksize=[1, 4, 4, 1], strides=[1, 4, 4, 1], padding='SAME')
 
 
 sess = tf.InteractiveSession()
-x = tf.placeholder("float", shape=[None, 4096])
-y_ = tf.placeholder("float", shape=[None, 10])
+x = tf.placeholder("float", shape=[None, 25600])
+y_ = tf.placeholder("float", shape=[None, 2])
 
-x_image = tf.reshape(x, [-1, 64, 64, 1])
-W_conv1 = weight_variable([5, 5, 1, 16])
+x_image = tf.reshape(x, [-1, 160, 160, 1])
+W_conv1 = weight_variable([7, 7, 1, 16])
 b_conv1 = bias_variable([16])
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
 h_pool1 = max_pool_2x2(h_conv1)
 
-W_conv2 = weight_variable([5, 5, 16, 32])
+W_conv2 = weight_variable([6, 6, 16, 32])
 b_conv2 = bias_variable([32])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
 h_pool2 = max_pool_2x2(h_conv2)
 
-W_fc1 = weight_variable([13 * 13 * 32, 512])
-b_fc1 = bias_variable([512])
-h_pool2_flat = tf.reshape(h_pool2, [-1, 13 * 13 * 32])
+W_fc1 = weight_variable([10 * 10 * 32, 246])
+b_fc1 = bias_variable([246])
+h_pool2_flat = tf.reshape(h_pool2, [-1, 10 * 10 * 32])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 keep_prob = tf.placeholder("float")
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
-W_fc2 = weight_variable([512, 10])
-b_fc2 = bias_variable([10])
+W_fc2 = weight_variable([246, 2])
+b_fc2 = bias_variable([2])
 
 y_conv = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
 
@@ -71,20 +71,19 @@ init_op = tf.initialize_all_variables()
 saver = tf.train.Saver()
 
 # load data
-mnist = input_data.read_data_sets(
-    file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt', one_hot=True)
+mnist = input_data.read_data_sets(one_hot=True)
 
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
-parm = "VALID_c5*5_p2*2_f16_o512"
-model_path = "../../../data/yibao/panzhihua/word2vec_and_cnn/model/model" + parm + "/"
+parm = "VALID_c8*8_p2*2_f16_o246"
+model_path = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model_2_onehot/" + parm + "/"
 if not os.path.exists(model_path):
     os.makedirs(model_path)
 with tf.Session() as sess:
     sess.run(init_op)
     # saver.restore(sess, "../../../mnist//model/model31000.ckpt")
     time1 = time.time()
-    for i in range(5000):
+    for i in range(50000):
         batch = mnist.train.next_batch(50)
         model_name = model_path + str(i) + ".ckpt"
         if i % 100 == 0:
@@ -106,7 +105,7 @@ with tf.Session() as sess:
     save_path = saver.save(sess, model_name)
     print "Model saved in file: ", save_path
 
-model_name = "../../../data/yibao/panzhihua/word2vec_and_cnn/model/model3000.ckpt"
+model_name = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model_2_onehot/3000.ckpt"
 with tf.Session() as sess:
     # Restore variables from disk.
     saver.restore(sess, model_name)
