@@ -102,7 +102,7 @@ class DataSet(object):
         return self._images[start:end], self._labels[start:end]
 
 
-def get_sentence_vector(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt'):
+def get_sentence_vector(file_path='../../../data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt'):
 
 
     word_vectors, labels, disease_map, class_index = [], [], {}, 0
@@ -125,7 +125,7 @@ def get_sentence_vector(file_path='../../../data/yibao/panzhihua/word2vec_and_cn
     return train_vectors, train_labels, test_vectors, test_labels
 
 
-def read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt', fake_data=False, one_hot=False):
+def read_data_sets(file_path='../../../data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt', fake_data=False, one_hot=False):
     class DataSets(object):
         pass
 
@@ -151,4 +151,4 @@ def read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc
     return data_sets
 
 
-# read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt')
+# read_data_sets(file_path='../../../data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt')

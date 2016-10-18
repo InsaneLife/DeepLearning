@@ -45,14 +45,14 @@ b_conv2 = bias_variable([32])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
 h_pool2 = max_pool_2x2(h_conv2)
 
-W_fc1 = weight_variable([10 * 10 * 32, 246])
-b_fc1 = bias_variable([246])
+W_fc1 = weight_variable([10 * 10 * 32, 256])
+b_fc1 = bias_variable([256])
 h_pool2_flat = tf.reshape(h_pool2, [-1, 10 * 10 * 32])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 keep_prob = tf.placeholder("float")
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
-W_fc2 = weight_variable([246, 2])
+W_fc2 = weight_variable([256, 2])
 b_fc2 = bias_variable([2])
 
 y_conv = tf.nn.softmax(tf.matmul(h_fc1_drop, W_fc2) + b_fc2)
@@ -75,8 +75,8 @@ mnist = input_data.read_data_sets(one_hot=True)
 
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
-parm = "VALID_c8*8_p2*2_f16_o246"
-model_path = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model_2_onehot/" + parm + "/"
+parm = "VALID_c8*8_p2*2_f16_o256"
+model_path = "../../../../data/yibao/word2vec/word2vec_and_cnn/model_2_onehot/" + parm + "/"
 if not os.path.exists(model_path):
     os.makedirs(model_path)
 with tf.Session() as sess:
@@ -105,7 +105,7 @@ with tf.Session() as sess:
     save_path = saver.save(sess, model_name)
     print "Model saved in file: ", save_path
 
-model_name = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model_2_onehot/3000.ckpt"
+model_name = "../../../../data/yibao/word2vec/word2vec_and_cnn/model_2_onehot/3000.ckpt"
 with tf.Session() as sess:
     # Restore variables from disk.
     saver.restore(sess, model_name)

@@ -40,7 +40,7 @@ def oracle_query_clob(sql, url='CSI_PZH/123456@192.168.2.98:1521/orcl'):
     return rows
 
 
-def get_word_vector(path="../../../../data/yibao/panzhihua/kc25k2_oneline_cut_out.txt"):
+def get_word_vector(path="../../../../data/yibao/panzhihua/word2vec/kc25k2_word2vec_cbow.txt"):
     word_vector_map = {}
     with open(path) as f:
         for line in f:

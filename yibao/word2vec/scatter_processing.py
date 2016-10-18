@@ -7,8 +7,8 @@ import json
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-in_file = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua//kc25k2_oneline_cut_scatter.txt'
-out_file = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua//scatter.txt'
+in_file = '/home/aaron/PycharmProjects/myproject1/data/yibao/word2vec//kc25k2_oneline_cut_scatter.txt'
+out_file = '/home/aaron/PycharmProjects/myproject1/data/yibao/word2vec//scatter.txt'
 data = []
 with open(in_file) as f:
     for line in f:

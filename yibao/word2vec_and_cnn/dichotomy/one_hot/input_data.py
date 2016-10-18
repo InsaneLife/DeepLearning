@@ -106,7 +106,7 @@ class DataSet(object):
 
 
 
-def read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt', fake_data=False, one_hot=False):
+def read_data_sets(file_path='../../../data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt', fake_data=False, one_hot=False):
     class DataSets(object):
         pass
 
@@ -132,4 +132,4 @@ def read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc
     return data_sets
 
 
-# read_data_sets(file_path='../../../data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt')
+# read_data_sets(file_path='../../../data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt')

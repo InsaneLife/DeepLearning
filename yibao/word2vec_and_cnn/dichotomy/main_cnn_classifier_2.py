@@ -76,7 +76,7 @@ mnist = input_data.read_data_sets(one_hot=True)
 # Later, launch the model, initialize the variables, do some work, save the
 # variables to disk.
 parm = "VALID_c8*8_p2*2_f16_o246"
-model_path = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model_2/" + parm + "/"
+model_path = "../../../../data/yibao/word2vec/word2vec_and_cnn/model_cbow/" + parm + "/"
 if not os.path.exists(model_path):
     os.makedirs(model_path)
 with tf.Session() as sess:
@@ -105,7 +105,7 @@ with tf.Session() as sess:
     save_path = saver.save(sess, model_name)
     print "Model saved in file: ", save_path
 
-model_name = "../../../../data/yibao/panzhihua/word2vec_and_cnn/model/model3000.ckpt"
+model_name = "../../../../data/yibao/word2vec/word2vec_and_cnn/model/model3000.ckpt"
 with tf.Session() as sess:
     # Restore variables from disk.
     saver.restore(sess, model_name)

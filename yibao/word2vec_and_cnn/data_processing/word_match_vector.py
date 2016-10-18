@@ -6,7 +6,7 @@ reload(sys)
 sys.setdefaultencoding('utf-8')
 
 
-def get_word_vector(path="..//../../data/yibao/panzhihua/kc25k2_oneline_cut_out.txt"):
+def get_word_vector(path="..//../../data/yibao/word2vec/kc25k2_oneline_cut_out.txt"):
     word_vector_map = {}
     with open(path) as f:
         for line in f:
@@ -24,8 +24,8 @@ def get_sentence_vector():
     label = []
     disease_map = {}
     class_index = 0
-    file_path = '../..//../data/yibao/panzhihua/ykc100_cut_top10.txt'
-    out_path = '../../..//data/yibao/panzhihua/word2vec_and_cnn/ykc100_cut_vector_top10.txt'
+    file_path = '../..//../data/yibao/word2vec/ykc100_cut_top10.txt'
+    out_path = '../../..//data/yibao/word2vec/word2vec_and_cnn/ykc100_cut_vector_top10.txt'
     out = open(out_path,'w')
     with open(file_path) as f:
         for line in f:

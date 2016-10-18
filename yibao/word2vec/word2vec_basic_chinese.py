@@ -26,7 +26,7 @@ import zipfile
 import numpy as np
 import tensorflow as tf
 
-filename = '/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/oneline_cut.txt'
+filename = '/home/aaron/PycharmProjects/myproject1/data/yibao/word2vec/oneline_cut.txt'
 
 
 # Read the data into a list of strings.
@@ -206,7 +206,7 @@ with tf.Session(graph=graph) as session:
 # Step 6: Visualize the embeddings.
 
 def write_with_labels(low_dim_embs, labels,
-                      out_file='/home/aaron/PycharmProjects/myproject1/data/yibao/panzhihua/kc25k2_oneline_cut_out.txt'):
+                      out_file='/home/aaron/PycharmProjects/myproject1/data/yibao/word2vec/kc25k2_oneline_cut_out.txt'):
     out = open(out_file, 'w')
     for i, label in enumerate(labels):
         text = low_dim_embs[i, :]
@@ -217,7 +217,7 @@ def write_with_labels(low_dim_embs, labels,
 
 
 def write_to_scatter(low_dim_embs, labels,
-                     out_file='../../../data/yibao/panzhihua//kc25k2_oneline_cut_scatter.txt'):
+                     out_file='../../../data/yibao/word2vec//kc25k2_oneline_cut_scatter.txt'):
     out = open(out_file, 'w')
     for i, label in enumerate(labels):
         x, y = low_dim_embs[i, :]

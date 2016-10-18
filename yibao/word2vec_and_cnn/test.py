@@ -6,7 +6,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-file_path = '/home/aaron/PycharmProjects/myproject1//data/yibao/panzhihua/ykc100_cut_top10.txt'
+file_path = '/home/aaron/PycharmProjects/myproject1//data/yibao/word2vec/ykc100_cut_top10.txt'
 with open(file_path) as f:
     max = 0
     text = ''

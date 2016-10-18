@@ -44,7 +44,7 @@ sql = "SELECT k.ykc605,k2.ykc100 FROM kc25 K LEFT JOIN kc25k2 k2 ON k.ykc009=k2.
 rows = oracle_query(sql)
 
 # jieba.load_userdict("../../../data/NLP/participle/lexicon/ciku.txt")
-file_path = "../../../data/yibao/panzhihua/ykc100_others1005_cut.txt"
+file_path = "../../../data/yibao/word2vec/ykc100_others1005_cut.txt"
 with open(file_path, 'w') as out:
     for disease, each in rows:
         each = each.replace("\n","").replace("\r","").replace("\t","")
