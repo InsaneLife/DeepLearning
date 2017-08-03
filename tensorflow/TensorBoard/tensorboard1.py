@@ -25,8 +25,8 @@ def add_layer(inputs, in_size, out_size, activation_function=None):
 # 定义输入inputs
 with tf.name_scope('inputs'):
     # 定义inputs中的x_input，y_input
-    xs = tf.placeholder(tf.float32, [None, 1], name='x_input')
-    ys = tf.placeholder(tf.float32, [None, 1], name='y_input')
+    xs = tf.placeholder(tf.float32, [1024, 1], name='x_input')
+    ys = tf.placeholder(tf.float32, [1024, 1], name='y_input')
 
 # 添加中间层l1
 l1 = add_layer(xs, 1, 10, activation_function=tf.nn.relu)
